@@ -104,7 +104,9 @@ public class RNReactNativeSMSUserConsentModule extends ReactContextBaseJavaModul
                         String message = intent.getStringExtra(SmsRetriever.EXTRA_SMS_MESSAGE);
                         WritableMap map = Arguments.createMap();
                         map.putString(RECEIVED_OTP_PROPERTY, message);
-                        promise.resolve(map);
+                        if (promise != null) {
+                            promise.resolve(map);
+                        }
                     } else {
                         promise.reject(E_OTP_ERROR, new Error("Result code: " + resultCode));
                     }
